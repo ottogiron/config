@@ -244,6 +244,11 @@ require("lazy").setup({
         map("n", "<leader>dl", function()
           require("dap").run_last()
         end)
+
+	-- Telescope
+	map("n", "<leader>tm", function()
+		require("telescope").extensions.metals.commands()
+	end)
       end
 
       return metals_config
