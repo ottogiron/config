@@ -117,6 +117,13 @@ endif
 " CtrlP search config
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+set wildignore+=node_modules,*.git,*.hg,*.svn "
+
+" Java 
+set wildignore+=*.class,*.jar,*.war,*.ear,*.zip,*.tar.gz,*.tar.bz2,*.rar,*.pyc,*.o,*.a,*.so,*.dll,*.exe,*.obj,*.lib,*.ncb,*.sdf,*.suo,*.pdb,*.idb,*.ilk,*.aps,*.pch,*.res,*.tlb,*.tlh,*.bak,*.swp,*.bak,*.d,*.dSYM,*.class,*.jar,*.war
+
+" Java target dir
+set wildignore+=target,build,bin,classes,lib
 
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = {
