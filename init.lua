@@ -70,7 +70,7 @@ require("lazy").setup({
   {
    "github/copilot.vim"
   },
-  {"preservin/nerdtree"},
+  {"preservim/nerdtree"},
   {
 	"nvim-telescope/telescope.nvim",
 	dependencies = {
