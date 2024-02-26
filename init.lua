@@ -48,6 +48,11 @@ vim.opt.runtimepath:append(lazypath)
 ----------------------------------
 require("lazy").setup({
   {
+    'mrcjkb/rustaceanvim',
+     version = '^4', -- Recommended
+     ft = { 'rust' },
+  },
+  {
   "christoomey/vim-tmux-navigator",
   cmd = {
     "TmuxNavigateLeft",
@@ -272,4 +277,16 @@ require("lazy").setup({
 ----------------------------------
 -- global
 vim.opt_global.completeopt = { "menuone", "noinsert", "noselect" }
+
+
+-- mappings
+
+-- Telescope
+map("n", "<leader>tf", function()
+	require("telescope.builtin").find_files()
+end)
+
+-- Custom
+vim.api.nvim_set_keymap('n', '<D-[>', ':bp<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<D-]>', ':bn<CR>', { noremap = true, silent = true })
 
