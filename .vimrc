@@ -10,7 +10,63 @@ set clipboard=unnamedplus
 " With a map leader it's possible to do extra key combinations
 " i.e: <leader>w saves the current file
 let mapleader = ","
+" Start with basic settngs
+" Set Vim-specific options (use :help option-name to find out more about each)
+set nocompatible              " Disable vi compatibility mode
+set backspace=indent,eol,start " Make backspace work over everything in insert mode
+set autoindent                " Enable auto-indent
+set smartindent               " Enable smart indent
+set tabstop=4                 " Set tab to 4 spaces
+set shiftwidth=4              " Set number of auto-indent spaces
+set expandtab                 " Use spaces instead of tabs
+set softtabstop=4             " Set number of spaces per Tab press
+set number                    " Show line numbers
+set relativenumber            " Show relative line numbers
+set wrap                      " Enable line wrap
+set scrolloff=5               " Keep at least 5 lines above/below
+set sidescrolloff=5           " Keep at least 5 lines left/right
+set cursorline                " Highlight the current line
+set incsearch                 " Incremental search that shows partial matches
+set hlsearch                  " Highlight all search matches (use :noh to turn off temporarily)
+set ignorecase                " Case insensitive searching
+set smartcase                 " Case sensitive if upper case is included
+set wildmenu                  " Visual autocomplete for command menu
+set lazyredraw                " Don't redraw while executing macros (good performance config)
+set showmatch                 " Show matching brackets when text indicator is over them
+set matchtime=2               " Tenths of a second to show the matching parenthesis
 
+" Visual options
+syntax on                     " Syntax highlighting
+colorscheme default           " Set colorscheme (substitute with your favorite colorscheme)
+set background=dark           " Tell vim what the background color looks like
+set t_Co=256                  " Use 256 colors - this is important for some colorschemes
+
+" Useful shortcuts
+nnoremap <C-S> :w<CR>         " Ctrl+S saves the file
+nnoremap <C-Q> :q<CR>         " Ctrl+Q quits the file
+inoremap <C-S> <Esc>:w<CR>i   " Ctrl+S saves the file from insert mode
+inoremap <C-Q> <Esc>:q<CR>i   " Ctrl+Q quits the file from insert mode
+
+" Enable file type detection
+filetype on
+filetype indent on
+filetype plugin on
+
+" For plugins (if installed)
+"call plug#begin('~/.vim/plugged')
+" Plug 'tpope/vim-sensible'
+" Plug 'preservim/nerdtree'
+"call plug#end()
+
+" More advanced mappings and commands can go here
+
+" Remember, after making changes to your .vimrc, reload it with:
+" :source $MYVIMRC
+" Or just restart vim.
+
+" For more details on any of these settings, use the :help command, e.g.
+" :help scrolloff
+"end with basic settings
 
 " Some useful quickfix shortcuts for quickfix
 nnoremap <leader>a :cclose<CR>
