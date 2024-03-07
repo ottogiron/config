@@ -47,6 +47,7 @@ vim.opt.runtimepath:append(lazypath)
 -- PLUGINS -----------------------
 ----------------------------------
 require("lazy").setup({
+    {'rose-pine/neovim', name = 'rose-pine'},
     {
         'tpope/vim-sensible'
     },
@@ -124,7 +125,7 @@ require("lazy").setup({
   {
     "scalameta/nvim-metals",
     dependencies = {
-      "nvim-lua/plenary.nvim",
+        "nvim-lua/plenary.nvim",
       {
         "j-hui/fidget.nvim",
         opts = {},
