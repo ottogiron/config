@@ -76,6 +76,28 @@ cmp.setup({
 require('nvim-lsp-installer').setup({})
 require'lspconfig'.rust_analyzer.setup({}) -- Rust LSP
 
+-- Lua language server and autocompletion
+local lspconfig = require('lspconfig')
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+lspconfig.lua_ls.setup({
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" }
+      },
+      workspace = {
+        library = {
+          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+          [vim.fn.stdpath("config") .. "/lua"] = true,
+        },
+      },
+    },
+  },
+})
+
 -- Metals (Scala LSP) setup
 local metals_config = require("metals").bare_config()
 metals_config.settings = {

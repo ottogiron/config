@@ -4,7 +4,7 @@ My custom vimrc. This Setup is still working but I'm migrating to neovim with nv
 
 Requires https://github.com/junegunn/vim-plug.
 
-## Instructions for  vim-plug 
+## Instructions for  vim-plug (deprecated)
 
 1. Copy it to ~/.vimrc
 2. open vim  running `vim`
