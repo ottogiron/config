@@ -296,6 +296,9 @@ map("n", "<leader>fh", ":Telescope help_tags<cr>", {silent = true})
 map("n", "<leader>n", ":NvimTreeToggle<CR>", {silent = true})
 map("n", "<leader>f", ":NvimTreeFindFile<CR>", {silent = true})
 
+
+vim.opt.clipboard = "unnamedplus"
+
 local opts = { noremap = true, silent = true }
 
 -- Save the current buffer with "leader + w"
@@ -308,7 +311,6 @@ vim.api.nvim_create_autocmd("InsertEnter", {
   pattern = "*",
   command = "set nohlsearch"
 })
-
 
 -- Disable Arrow Keys in Normal and Visual Mode
 map('n', '<Up>', '<NOP>', opts)
