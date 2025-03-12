@@ -2,6 +2,8 @@
 dimensions = { columns = 100, lines = 30 }
 opacity = 0.9
 padding = { x = 10, y = 10 }
+decorations = "None"  # Options: "Full", "None", "Transparent", "Buttonless"
+dynamic_title = true
 
 [font]
 normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
@@ -18,9 +20,24 @@ style = { shape = "Block", blinking = "Always" }
 bindings = [
   { key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" },
   { key = "V", mods = "Control|Shift", action = "Paste" },
-  { key = "C", mods = "Control|Shift", action = "Copy" }
+  { key = "C", mods = "Control|Shift", action = "Copy" },
+  { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
+  { key = "F", mods = "Control|Shift", action = "ToggleFullscreen" },
+  { key = "Plus", mods = "Control", action = "IncreaseFontSize" },
+  { key = "Minus", mods = "Control", action = "DecreaseFontSize" },
+  { key = "Key0", mods = "Control", action = "ResetFontSize" }
 ]
 
 [scrolling]
 history = 10000
 multiplier = 3
+
+[mouse]
+hide_when_typing = true
+
+[selection]
+save_to_clipboard = true
+
+[bell]
+animation = "EaseOutExpo"
+duration = 0
