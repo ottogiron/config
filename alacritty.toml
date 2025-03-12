@@ -1,0 +1,26 @@
+[window]
+dimensions = { columns = 100, lines = 30 }
+opacity = 0.9
+padding = { x = 10, y = 10 }
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+size = 16.0
+
+[colors]
+primary = { background = "#1e1e2e", foreground = "#cdd6f4" }
+normal = { black = "#282c34", red = "#e06c75", green = "#98c379", yellow = "#e5c07b", blue = "#61afef", magenta = "#c678dd", cyan = "#56b6c2", white = "#dcdfe4" }
+
+[cursor]
+style = { shape = "Block", blinking = "Always" }
+
+[keyboard]
+bindings = [
+  { key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" },
+  { key = "V", mods = "Control|Shift", action = "Paste" },
+  { key = "C", mods = "Control|Shift", action = "Copy" }
+]
+
+[scrolling]
+history = 10000
+multiplier = 3

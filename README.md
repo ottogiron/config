@@ -1,17 +1,38 @@
-# myvimrc
+# config
 
-My custom vimrc. This Setup is still working but I'm migrating to neovim with nvim.lazy.
+My personal configuration files for development tools.
 
-Requires https://github.com/junegunn/vim-plug.
+## Contents
 
-## Instructions for  vim-plug (deprecated)
+- `.tmux.conf`: Configuration for tmux terminal multiplexer
+- `alacritty.toml`: Configuration for Alacritty terminal emulator
+- More configurations may be added in the future
 
-1. Copy it to ~/.vimrc
-2. open vim  running `vim`
-3. Inside vim run `:PlugInstall`
+## Usage
 
-## Instructions for neovim
+### tmux Configuration
 
-1. Copy it to ~/.config/nvim/init.lua
+1. Copy `.tmux.conf` to your home directory:
+   ```
+   cp .tmux.conf ~/.tmux.conf
+   ```
+2. Restart tmux or reload the configuration with:
+   ```
+   tmux source-file ~/.tmux.conf
+   ```
 
+### Alacritty Configuration
+
+1. Copy `alacritty.toml` to your Alacritty configuration directory:
+   ```
+   # For macOS
+   cp alacritty.toml ~/.config/alacritty/alacritty.toml
+   
+   # For Linux
+   cp alacritty.toml ~/.config/alacritty/alacritty.toml
+   
+   # For Windows
+   cp alacritty.toml %APPDATA%\alacritty\alacritty.toml
+   ```
+2. Restart Alacritty to apply the changes
 
