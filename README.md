@@ -12,14 +12,24 @@ My personal configuration files for development tools.
 
 ### tmux Configuration
 
-1. Copy `.tmux.conf` to your home directory:
+1. Install TPM
+
+    ```git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm```
+
+2. Copy `.tmux.conf` to your home directory:
    ```
    cp .tmux.conf ~/.tmux.conf
    ```
-2. Restart tmux or reload the configuration with:
+3. Restart tmux or reload the configuration with:
    ```
    tmux source-file ~/.tmux.conf
    ```
+4. Install plugins
+    
+    ```sh
+        # Inside a tmux session, press:```
+        # prefix + I (capital i)
+     ```
 
 ### Alacritty Configuration
 
