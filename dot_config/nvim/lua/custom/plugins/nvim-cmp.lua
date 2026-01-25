@@ -15,8 +15,8 @@ return {
 
     return {
       completion = {
-        -- Do NOT show menu automatically
-        autocomplete = false,
+        -- Show menu automatically while typing
+        autocomplete = { cmp.TriggerEvent.TextChanged },
         completeopt = 'menu,menuone,noinsert',
       },
       mapping = cmp.mapping.preset.insert {
