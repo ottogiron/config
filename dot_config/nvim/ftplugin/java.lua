@@ -17,6 +17,9 @@ end
 local project_name = vim.fn.fnamemodify(root_dir, ':p:h:t')
 local workspace_dir = vim.fn.stdpath 'data' .. '/jdtls-workspace/' .. project_name
 
+-- Lombok support (bundled with Mason's jdtls)
+local lombok_jar = vim.fn.stdpath 'data' .. '/mason/packages/jdtls/lombok.jar'
+
 -- Spring Boot bundles (only if jar files exist)
 local bundles = {}
 local ok, spring_boot = pcall(require, 'spring_boot')
