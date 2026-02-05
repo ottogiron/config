@@ -89,13 +89,29 @@ return {
       properties = { 'documentation', 'detail', 'additionalTextEdits' },
     }
 
+    -- Flux LSP (manual setup, not managed by Mason)
+    local flux_lsp_bin = '/Users/ottogiron/workspace/github.com/ottogiron/flux/target/release/flux_lsp'
+    if vim.fn.executable(flux_lsp_bin) == 1 then
+      vim.lsp.config('flux_lsp', {
+        cmd = { flux_lsp_bin },
+        filetypes = { 'flux' },
+        root_markers = { '.git', 'Cargo.toml' },
+        single_file_support = true,
+        capabilities = capabilities,
+      })
+
+      vim.lsp.enable 'flux_lsp'
+    end
+
+
     -- Mason LSP bridge
     require('mason-lspconfig').setup {
       handlers = {
         function(server_name)
           local server = servers[server_name] or {}
           server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-          require('lspconfig')[server_name].setup(server)
+          vim.lsp.config(server_name, server)
+          vim.lsp.enable(server_name)
         end,
       },
     }

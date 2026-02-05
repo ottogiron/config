@@ -33,6 +33,12 @@ Quick Reference:
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.filetype.add({
+  extension = {
+    flux = 'flux',
+  },
+})
+
 -- Reload custom modules
 vim.keymap.set('n', '<leader>rl', function()
   -- Only reload core custom modules (not plugins, which lazy.nvim handles)
