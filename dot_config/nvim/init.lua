@@ -35,7 +35,8 @@ vim.g.maplocalleader = ' '
 
 vim.filetype.add({
   extension = {
-    flux = 'flux',
+    aster = 'aster',
+    flux = 'aster',
   },
 })
 

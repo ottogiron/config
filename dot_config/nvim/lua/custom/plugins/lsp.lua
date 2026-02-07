@@ -89,18 +89,18 @@ return {
       properties = { 'documentation', 'detail', 'additionalTextEdits' },
     }
 
-    -- Flux LSP (manual setup, not managed by Mason)
-    local flux_lsp_bin = '/Users/ottogiron/workspace/github.com/ottogiron/flux/target/release/flux_lsp'
-    if vim.fn.executable(flux_lsp_bin) == 1 then
-      vim.lsp.config('flux_lsp', {
-        cmd = { flux_lsp_bin },
-        filetypes = { 'flux' },
+    -- Aster LSP (manual setup, not managed by Mason)
+    local aster_lsp_bin = '/Users/ottogiron/workspace/github.com/ottogiron/flux/target/release/aster_lsp'
+    if vim.fn.executable(aster_lsp_bin) == 1 then
+      vim.lsp.config('aster_lsp', {
+        cmd = { aster_lsp_bin },
+        filetypes = { 'aster', 'flux' },
         root_markers = { '.git', 'Cargo.toml' },
         single_file_support = true,
         capabilities = capabilities,
       })
 
-      vim.lsp.enable 'flux_lsp'
+      vim.lsp.enable 'aster_lsp'
     end
 
 
