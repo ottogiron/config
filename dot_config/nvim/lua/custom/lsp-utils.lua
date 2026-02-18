@@ -1,5 +1,5 @@
 -- Shared LSP utilities for consistent keymaps and document highlighting
--- Used by lsp.lua, nvim-jdtls.lua, and nvim-metals.lua
+-- Used by ftplugin/java.lua (nvim-jdtls)
 
 local M = {}
 
