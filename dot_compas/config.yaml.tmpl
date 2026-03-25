@@ -1,10 +1,11 @@
+{{- $home := .chezmoi.homeDir -}}
 {{- if .personal -}}
-target_repo_root: /Users/ottogiron/workspace
-state_dir: /Users/ottogiron/.compas/state
+target_repo_root: {{ $home }}/workspace
+state_dir: {{ $home }}/.compas/state
 {{- else -}}
 # TODO: work paths
-target_repo_root: /Users/ottogiron/work
-state_dir: /Users/ottogiron/.compas/state
+target_repo_root: {{ $home }}/work
+state_dir: {{ $home }}/.compas/state
 {{- end }}
 poll_interval_secs: 1
 notifications:
@@ -63,14 +64,14 @@ models:
 
 hooks:
   on_execution_completed:
-    - command: /Users/ottogiron/.compas/hooks/log-events.sh
+    - command: {{ $home }}/.compas/hooks/log-events.sh
 
 agents:
   # ── Aster project agents ───────────────────────────────────────────────────
   - alias: aster-focused
     backend: claude
     model: claude-opus-4-6
-    workdir: /Users/ottogiron/workspace/github.com/ottogiron/aster
+    workdir: {{ $home }}/workspace/github.com/ottogiron/aster
     workspace: worktree
     handoff:
       on_response: aster-reviewer
@@ -96,7 +97,7 @@ agents:
   - alias: aster-chill
     backend: claude
     model: claude-sonnet-4-6
-    workdir: /Users/ottogiron/workspace/github.com/ottogiron/aster
+    workdir: {{ $home }}/workspace/github.com/ottogiron/aster
     workspace: worktree
     handoff:
       on_response: aster-reviewer
@@ -117,7 +118,7 @@ agents:
   - alias: aster-spark
     backend: claude
     model: claude-sonnet-4-6
-    workdir: /Users/ottogiron/workspace/github.com/ottogiron/aster
+    workdir: {{ $home }}/workspace/github.com/ottogiron/aster
     workspace: worktree
     handoff:
       on_response: aster-reviewer
@@ -138,7 +139,7 @@ agents:
   - alias: aster-reviewer
     backend: claude
     model: claude-sonnet-4-6
-    workdir: /Users/ottogiron/workspace/github.com/ottogiron/aster
+    workdir: {{ $home }}/workspace/github.com/ottogiron/aster
     prompt: >
       You are Reviewer, Independent Code Quality Reviewer for Aster.
       Review only: do not implement unless explicitly instructed.
@@ -156,7 +157,7 @@ agents:
   - alias: aster-reviewer-2
     model: claude-opus-4-6
     backend: claude
-    workdir: /Users/ottogiron/workspace/github.com/ottogiron/aster
+    workdir: {{ $home }}/workspace/github.com/ottogiron/aster
     prompt: >
       You are Reviewer, Independent Code Quality Reviewer for Aster.
       Review only: do not implement unless explicitly instructed.
@@ -168,7 +169,7 @@ agents:
   - alias: aster-pixel
     backend: claude
     model: claude-sonnet-4-6
-    workdir: /Users/ottogiron/workspace/github.com/ottogiron/aster
+    workdir: {{ $home }}/workspace/github.com/ottogiron/aster
     workspace: worktree
     handoff:
       on_response: aster-reviewer
@@ -186,7 +187,7 @@ agents:
   - alias: aster-architect
     backend: claude
     model: claude-opus-4-6
-    workdir: /Users/ottogiron/workspace/github.com/ottogiron/aster
+    workdir: {{ $home }}/workspace/github.com/ottogiron/aster
     prompt: >
       You are Architect, Language Design Advisor for Aster.
 
@@ -225,7 +226,7 @@ agents:
   - alias: compas-dev
     backend: claude
     model: claude-opus-4-6
-    workdir: /Users/ottogiron/workspace/github.com/ottogiron/compas
+    workdir: {{ $home }}/workspace/github.com/ottogiron/compas
     workspace: worktree
     max_retries: 1
     handoff:
@@ -239,7 +240,7 @@ agents:
   - alias: compas-dev-2
     backend: claude
     model: claude-opus-4-6
-    workdir: /Users/ottogiron/workspace/github.com/ottogiron/compas
+    workdir: {{ $home }}/workspace/github.com/ottogiron/compas
     workspace: worktree
     handoff:
       on_response: compas-reviewer
@@ -252,7 +253,7 @@ agents:
   - alias: compas-reviewer
     backend: claude
     model: claude-sonnet-4-6
-    workdir: /Users/ottogiron/workspace/github.com/ottogiron/compas
+    workdir: {{ $home }}/workspace/github.com/ottogiron/compas
     prompt: >
       You are compas-reviewer, Independent Code Quality Reviewer for compas
       (the multi-agent orchestrator). This is a Rust project.
@@ -272,7 +273,7 @@ agents:
   - alias: compas-ux
     backend: claude
     model: claude-opus-4-6
-    workdir: /Users/ottogiron/workspace/github.com/ottogiron/compas
+    workdir: {{ $home }}/workspace/github.com/ottogiron/compas
     prompt: >
       You are Compas-UX, TUI Design Advisor for Compas.
 
@@ -305,7 +306,7 @@ agents:
   - alias: ticket-dev
     backend: claude
     model: claude-sonnet-4-6
-    workdir: /Users/ottogiron/workspace/github.com/ottogiron/ticket-tracker
+    workdir: {{ $home }}/workspace/github.com/ottogiron/ticket-tracker
     workspace: worktree
     max_retries: 1
     handoff:
@@ -319,7 +320,7 @@ agents:
   - alias: compas-architect
     backend: claude
     model: claude-opus-4-6
-    workdir: /Users/ottogiron/workspace/github.com/ottogiron/compas
+    workdir: {{ $home }}/workspace/github.com/ottogiron/compas
     prompt: >
       You are Compas-Architect, System Design Advisor for Compas.
 
@@ -350,7 +351,7 @@ agents:
 # TODO: work hooks
 hooks:
   on_execution_completed:
-    - command: /Users/ottogiron/.compas/hooks/log-events.sh
+    - command: {{ $home }}/.compas/hooks/log-events.sh
 
 # TODO: work agents — paste your work config's agents block here
 agents: []
