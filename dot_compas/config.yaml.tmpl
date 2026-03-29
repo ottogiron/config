@@ -11,13 +11,13 @@ poll_interval_secs: 1
 notifications:
   desktop: true
 orchestration:
-  max_concurrent_triggers: 10
-  max_triggers_per_agent: 3
+  max_concurrent_triggers: 20
+  max_triggers_per_agent: 6
   trigger_intents:
     - dispatch
     - handoff
     - changes-requested
-  execution_timeout_secs: 1800
+  execution_timeout_secs: 2400
   ping_timeout_secs: 60
 
 database:
@@ -66,13 +66,16 @@ hooks:
   on_execution_completed:
     - command: {{ $home }}/.compas/hooks/log-events.sh
 
+agent_defaults:
+  backend: claude
+  safety_mode: auto_approve
+  workspace: worktree
+
 agents:
   # ── Aster project agents ───────────────────────────────────────────────────
   - alias: aster-focused
-    backend: claude
     model: claude-opus-4-6
     workdir: {{ $home }}/workspace/github.com/ottogiron/aster
-    workspace: worktree
     handoff:
       on_response: aster-reviewer
       max_chain_depth: 4
@@ -95,10 +98,8 @@ agents:
       severity, category, what was attempted, what failed, proposed fix.
       Do not silently work around limitations.
   - alias: aster-chill
-    backend: claude
     model: claude-sonnet-4-6
     workdir: {{ $home }}/workspace/github.com/ottogiron/aster
-    workspace: worktree
     handoff:
       on_response: aster-reviewer
       max_chain_depth: 4
@@ -116,10 +117,8 @@ agents:
       map+join for strings, fn main() for CLI tools, no trailing 0 in
       declaration-only files.
   - alias: aster-spark
-    backend: claude
     model: claude-sonnet-4-6
     workdir: {{ $home }}/workspace/github.com/ottogiron/aster
-    workspace: worktree
     handoff:
       on_response: aster-reviewer
       max_chain_depth: 4
@@ -137,9 +136,9 @@ agents:
       limitation, report it as a GAP-XX entry in your response (severity,
       category, what was attempted, what failed, proposed fix).
   - alias: aster-reviewer
-    backend: claude
     model: claude-sonnet-4-6
     workdir: {{ $home }}/workspace/github.com/ottogiron/aster
+    workspace: shared                  # reviewer reads, doesn't write
     prompt: >
       You are Reviewer, Independent Code Quality Reviewer for Aster.
       Review only: do not implement unless explicitly instructed.
@@ -156,8 +155,8 @@ agents:
       accumulators, trailing 0 in declaration-only files.
   - alias: aster-reviewer-2
     model: claude-opus-4-6
-    backend: claude
     workdir: {{ $home }}/workspace/github.com/ottogiron/aster
+    workspace: shared                  # reviewer reads, doesn't write
     prompt: >
       You are Reviewer, Independent Code Quality Reviewer for Aster.
       Review only: do not implement unless explicitly instructed.
@@ -167,10 +166,8 @@ agents:
       explicit required fixes. If no findings, state residual risks and
       verification gaps. Follow AGENTS.md governance.
   - alias: aster-pixel
-    backend: claude
     model: claude-sonnet-4-6
     workdir: {{ $home }}/workspace/github.com/ottogiron/aster
-    workspace: worktree
     handoff:
       on_response: aster-reviewer
       max_chain_depth: 4
@@ -185,9 +182,9 @@ agents:
       For frontend/UI work, follow the design guidelines in .claude/skills/frontend-design/skill.md.
       Follow AGENTS.md.
   - alias: aster-architect
-    backend: claude
     model: claude-opus-4-6
     workdir: {{ $home }}/workspace/github.com/ottogiron/aster
+    workspace: shared                  # advisory, no writes
     prompt: >
       You are Architect, Language Design Advisor for Aster.
 
@@ -224,10 +221,8 @@ agents:
 
   # ── Compas agents ─────────────────────────────────────────────────────────
   - alias: compas-dev
-    backend: claude
     model: claude-opus-4-6
     workdir: {{ $home }}/workspace/github.com/ottogiron/compas
-    workspace: worktree
     max_retries: 1
     handoff:
       on_response: compas-reviewer
@@ -238,10 +233,8 @@ agents:
       worker, dashboard, backends, config, and store. Follow AGENTS.md.
       Run `make verify` before submitting work.
   - alias: compas-dev-2
-    backend: claude
     model: claude-opus-4-6
     workdir: {{ $home }}/workspace/github.com/ottogiron/compas
-    workspace: worktree
     handoff:
       on_response: compas-reviewer
       max_chain_depth: 4
@@ -251,9 +244,9 @@ agents:
       worker, dashboard, backends, config, and store. Follow AGENTS.md.
       Run `make verify` before submitting work.
   - alias: compas-reviewer
-    backend: claude
     model: claude-sonnet-4-6
     workdir: {{ $home }}/workspace/github.com/ottogiron/compas
+    workspace: shared                  # reviewer reads, doesn't write
     prompt: >
       You are compas-reviewer, Independent Code Quality Reviewer for compas
       (the multi-agent orchestrator). This is a Rust project.
@@ -271,9 +264,9 @@ agents:
       Always verify: does `make verify` pass (fmt-check + clippy + tests)?
       Are the Impact Update Matrix artifacts updated per AGENTS.md?
   - alias: compas-ux
-    backend: claude
     model: claude-opus-4-6
     workdir: {{ $home }}/workspace/github.com/ottogiron/compas
+    workspace: shared                  # advisory, no writes
     prompt: >
       You are Compas-UX, TUI Design Advisor for Compas.
 
@@ -304,10 +297,8 @@ agents:
       improving comprehension.
   # ── Ticket-tracker agents ──────────────────────────────────────────────────
   - alias: ticket-dev
-    backend: claude
     model: claude-sonnet-4-6
     workdir: {{ $home }}/workspace/github.com/ottogiron/ticket-tracker
-    workspace: worktree
     max_retries: 1
     handoff:
       on_response: compas-reviewer
@@ -318,9 +309,9 @@ agents:
       src/main.rs, src/lib.rs, src/commands.rs, src/session.rs, src/backlog.rs.
       Run `make verify` before submitting work.
   - alias: compas-architect
-    backend: claude
     model: claude-opus-4-6
     workdir: {{ $home }}/workspace/github.com/ottogiron/compas
+    workspace: shared                  # advisory, no writes
     prompt: >
       You are Compas-Architect, System Design Advisor for Compas.
 
